@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { AppContext } from './Context';
+import { Day } from './Day';
+import { DayAndYearSelector } from './DayAndYearSelectors';
+import './index.css';
+import { TodoList } from './TodoList';
+import { dayNames } from './utils';
 
-function App() {
+export default function App() {
+  const { days, todos, selectedDay, theme } = React.useContext(AppContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`main-container ${theme}`}>
+      <div className="calendar-container">
+        <DayAndYearSelector />
+        <div className="day-names-container">
+          {dayNames.map((day) => (
+            <p key={day} className="day-name-container">{day[0]}</p>
+          ))}
+        </div>
+
+        <div className="days-container">
+          {days.map((day, ind) => (
+            <Day day={day} key={ind} />
+          ))}
+        </div>
+      </div>
+      <div className="todos-container">
+        <TodoList todos={todos} day={selectedDay} />
+      </div>
     </div>
   );
 }
-
-export default App;

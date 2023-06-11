@@ -1,13 +1,191 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.light{
+  --main-bg-color: white;
+  --gray-1: #F2F4F4;
+  --blue-1: #5DADE2 ;
+  --blue-2:#1B4F72;
+  --gray-2:#424949;
+  --green: #48C9B0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dark{
+  --main-bg-color: black;
+  --blue-1:#1B4F72;
+  --gray-1:#424949;
+  --gray-2: #F2F4F4;
+  --blue-2: #5DADE2 ;
+  --green: #48C9B0
+}
+
+h1,
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+small {
+  font-size: x-small;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+select, input, button{
+  padding: 7px;
+  appearance: none;
+  border: none;
+  background-color: var(--gray-1);
+  border-radius: 5px;
+  color: var(--blue-2);
+}
+
+button{
+  padding: 0 20px;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  position: fixed;
+}
+
+.main-container {
+  display: grid;
+  grid-template-rows: minmax(auto, 45%) auto;
+  grid-gap: 1%;
+  height: 100%;
+  background-color: var(--main-bg-color);
+  color: var(--blue-1);
+}
+
+.todos-container {
+  display: grid;
+  grid-template-rows: 15% auto;
+  margin: 2px 5%;
+  overflow: hidden;
+  color: var(--blue-2)
+}
+
+.calendar-container{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 760px) {
+  .main-container {
+    /* width: 60%; */
+    padding: 0 20%;
+  }
+}
+
+.days-container,
+.day-names-container {
+  display: grid;
+  grid-template-columns: repeat(7, 9fr);
+  gap: 10px 0;
+}
+
+.day-name-container {
+  margin-bottom: 20px;
+}
+
+.day-container,
+.day-name-container {
+  text-align: center;
+}
+
+.day-container{
+  margin-bottom: 3px;;
+}
+.month-year-container {
+  display: grid;
+  grid-template-columns: 20% auto 20%;
+  justify-content: space-between;
+  margin: 0 5%;
+  margin-bottom: 5%;
+}
+
+.day-container:hover {
+  cursor: pointer;
+}
+
+.todos-list-container {
+  overflow: auto;
+}
+
+.todo-container {
+  border-radius: 5px;
+  padding: 5px;
+  display: grid;
+  margin: 5px 0;
+  grid-template-columns: 80% 20%;
+  background-color: var(--gray-1);
+}
+
+.add-edit-todo-container {
+  margin-top: 5px;
+  display: flex;
+  gap: 3%;
+}
+
+.add-edit-todo-container > input{
+  width: -webkit-fill-available;
+}
+
+.checkbox-container{
+  display: flex;
+  align-items: center;
+}
+
+.todo-options-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 1%;
+  gap: 10%;
+}
+
+.icon{
+  display: flex;
+  align-items: center;
+  color: var(--blue-2);
+}
+
+.icon:hover{
+  cursor: pointer;
+  transform: scale(.9);
+}
+
+.completed-icon{
+  color: var(--green);
+}
+
+
+.selected-day{
+  color: var(--blue-2);
+  transform: scale(2);
+  border-radius: 5px;
+}
+
+.todo-text-icon-container{
+  display: grid;
+  grid-template-columns: 3% auto;
+  grid-gap: .5%;
 }
