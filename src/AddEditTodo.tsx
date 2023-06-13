@@ -1,52 +1,52 @@
-import * as React from 'react';
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useContext, useEffect, useState } from 'react';
 import { AppContext } from './Context';
 import { TTodo } from './types';
+import { Icon } from './Icon';
 
 export type TAddEditTodoProps = {
-  todo: TTodo|null;
-  setSelectedTodo: React.Dispatch<React.SetStateAction<TTodo|null>>;
+  todo: TTodo | null;
+  setSelectedTodo: Dispatch<SetStateAction<TTodo | null>>;
 };
 
 export const AddEditTodo = (props: TAddEditTodoProps) => {
   const { todo, setSelectedTodo } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     setNewTodo(todo);
   }, [todo]);
 
-  const [newTodo, setNewTodo] = React.useState<TTodo|null>(null);
-  const { addTodo, updateTodo } = React.useContext(AppContext);
+  const [newTodo, setNewTodo] = useState<TTodo | null>(null);
+  const { addTodo, updateTodo } = useContext(AppContext);
 
-  const handleAddEditTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = e
+  const handleAddEditTodo = (e: ChangeEvent<HTMLInputElement>) => {
+    const { target } = e;
     const changedTodo = {
-        ...newTodo,
-        [target.name]: target.value
-    }
-    if(changedTodo.title){
+      ...newTodo,
+      [target.name]: target.value,
+    };
+    if (changedTodo.title) {
       setNewTodo(changedTodo as TTodo);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if(newTodo) todo ? updateTodo(newTodo) : addTodo(newTodo);
+    if (newTodo) todo ? updateTodo(newTodo) : addTodo(newTodo);
     setSelectedTodo(null);
     setNewTodo(null);
   };
 
   return (
     <form onSubmit={handleSubmit} className="add-edit-todo-container">
-      <input
-        value={newTodo?.title || ''}
-        name="title"
-        onChange={handleAddEditTodo}
-        placeholder="Add todo"
-      />
-      {
-        todo && <button onClick={() => setSelectedTodo(null)}>Cancel</button>
-      }
-      <button type="submit">{todo ? 'Save' : 'Add'}</button>
+      <input value={newTodo?.title || ''} name="title" onChange={handleAddEditTodo} placeholder="Add todo" />
+      {todo && (
+        <Icon isButton={true} onClick={() => setSelectedTodo(null)} name="x-mark" className="icon btn-bg-none" />
+      )}
+      {todo ? (
+        <Icon isButton={true} className="icon btn-bg-none" extra={{ type: 'submit' }} name="check" />
+      ) : (
+        <Icon isButton={true} className="icon btn-bg-none" extra={{ type: 'submit' }} name="plus" />
+      )}
     </form>
   );
 };

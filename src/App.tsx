@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useContext } from 'react';
 import { AppContext } from './Context';
 import { Day } from './Day';
 import { DayAndYearSelector } from './DayAndYearSelectors';
@@ -7,7 +7,7 @@ import { TodoList } from './TodoList';
 import { dayNames } from './utils';
 
 export default function App() {
-  const { days, todos, selectedDay, theme } = React.useContext(AppContext);
+  const { days, todos, selectedDay, theme } = useContext(AppContext);
 
   return (
     <div className={`main-container ${theme}`}>
@@ -15,7 +15,9 @@ export default function App() {
         <DayAndYearSelector />
         <div className="day-names-container">
           {dayNames.map((day) => (
-            <p key={day} className="day-name-container">{day[0]}</p>
+            <p key={day} className="day-name-container">
+              {day[0]}
+            </p>
           ))}
         </div>
 

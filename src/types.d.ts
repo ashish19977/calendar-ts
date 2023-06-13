@@ -13,7 +13,7 @@ declare type TAppContext = {
   year: number;
   days: Tday[];
   month: number;
-  selectedTodo: TTodo|undefined;
+  selectedTodo: TTodo | undefined;
   todos: TTodo[];
   selectedDay: Tday;
   theme: string;
@@ -23,7 +23,7 @@ declare type TAppContext = {
   setYears: Dispatch<SetStateAction<number[]>>;
   setTodos: Dispatch<SetStateAction<TTodo[]>>;
   setMonth: Dispatch<SetStateAction<number>>;
-  setSelectedTodo: Dispatch<SetStateAction<TTodo|undefined>>;
+  setSelectedTodo: Dispatch<SetStateAction<TTodo | undefined>>;
   updateTodo: (todo: Partial<TTodo>) => void;
   deleteTodo: (id: number) => void;
   addTodo: (todo: TTodo) => void;

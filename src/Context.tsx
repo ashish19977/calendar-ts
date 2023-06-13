@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { TAppContext, Tday, TTodo } from './types';
 import {
   currentDay,
@@ -17,19 +17,17 @@ import {
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth();
 
-export const AppContext = React.createContext<TAppContext>({} as any);
+export const AppContext = createContext<TAppContext>({} as TAppContext);
 
 export const AppContextProvider = (props: { children: React.ReactElement }) => {
-  
-
-  const [years, setYears] = React.useState<number[]>([]);
-  const [days, setDays] = React.useState<Tday[]>([]);
-  const [year, setYear] = React.useState(currentYear);
-  const [month, setMonth] = React.useState(currentMonth);
-  const [todos, setTodos] = React.useState(getTodos(new Date().toString()));
-  const [selectedDay, setSelectedDay] = React.useState<Tday>(currentDay);
-  const [selectedTodo, setSelectedTodo] = React.useState<TTodo>();
-  const [theme, setTheme] = React.useState<string>(getTheme());
+  const [years, setYears] = useState<number[]>([]);
+  const [days, setDays] = useState<Tday[]>([]);
+  const [year, setYear] = useState(currentYear);
+  const [month, setMonth] = useState(currentMonth);
+  const [todos, setTodos] = useState(getTodos(new Date().toString()));
+  const [selectedDay, setSelectedDay] = useState<Tday>(currentDay);
+  const [selectedTodo, setSelectedTodo] = useState<TTodo>();
+  const [theme, setTheme] = useState<string>(getTheme());
 
   const onDayClick = (day: Tday) => {
     setSelectedDay(day);
@@ -41,7 +39,7 @@ export const AppContextProvider = (props: { children: React.ReactElement }) => {
     setSelectedTodo(undefined);
   };
 
-  const deleteTodo = (id:number) => {
+  const deleteTodo = (id: number) => {
     _deleteTodo(selectedDay.dateStr, id);
     setTodos(getTodos(selectedDay.dateStr));
   };
@@ -52,12 +50,12 @@ export const AppContextProvider = (props: { children: React.ReactElement }) => {
   };
 
   const changeTheme = () => {
-    const changedTheme = theme ===  themes.light ? themes.dark : themes.light
-    setTheme(changedTheme)
-    _setTheme(changedTheme)
-  }
+    const changedTheme = theme === themes.light ? themes.dark : themes.light;
+    setTheme(changedTheme);
+    _setTheme(changedTheme);
+  };
 
-  React.useEffect(() => {
+  useEffect(() => {
     let days = getMonthDays(year, month);
     days = getExtraDaysAtStartAndEnd(days);
     setDays(days);
@@ -65,10 +63,9 @@ export const AppContextProvider = (props: { children: React.ReactElement }) => {
     setYears(years);
   }, [month, year]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTodos(getTodos(selectedDay.dateStr));
   }, [selectedDay]);
-
 
   return (
     <AppContext.Provider
@@ -91,7 +88,7 @@ export const AppContextProvider = (props: { children: React.ReactElement }) => {
         setSelectedTodo,
         deleteTodo,
         theme,
-        changeTheme
+        changeTheme,
       }}
     >
       {props.children}
