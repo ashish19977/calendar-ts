@@ -1,19 +1,19 @@
-.light{
+.light {
   --main-bg-color: white;
-  --gray-1: #F2F4F4;
-  --blue-1: #5DADE2 ;
-  --blue-2:#1B4F72;
-  --gray-2:#424949;
-  --green: #48C9B0;
+  --gray-1: #f2f4f4;
+  --blue-1: #5dade2;
+  --blue-2: #1b4f72;
+  --gray-2: #424949;
+  --green: #48c9b0;
 }
 
-.dark{
+.dark {
   --main-bg-color: black;
-  --blue-1:#1B4F72;
-  --gray-1:#424949;
-  --gray-2: #F2F4F4;
-  --blue-2: #5DADE2 ;
-  --green: #48C9B0
+  --blue-1: #1b4f72;
+  --gray-1: #424949;
+  --gray-2: #f2f4f4;
+  --blue-2: #5dade2;
+  --green: #48c9b0;
 }
 
 h1,
@@ -43,7 +43,9 @@ body {
   outline: none;
 }
 
-select, input, button{
+select,
+input,
+button {
   padding: 7px;
   appearance: none;
   border: none;
@@ -52,7 +54,7 @@ select, input, button{
   color: var(--blue-2);
 }
 
-button{
+button {
   padding: 0 20px;
 }
 
@@ -77,15 +79,14 @@ button{
 .todos-container {
   display: grid;
   grid-template-rows: 18% auto;
-    margin: 0 5%;
+  margin: 0 5%;
   overflow: hidden;
-  color: var(--blue-2)
+  color: var(--blue-2);
 }
 
-.calendar-container{
+.calendar-container {
   margin-top: 20px;
   display: flex;
-  overflow: auto;
   flex-direction: column;
 }
 
@@ -112,8 +113,8 @@ button{
   text-align: center;
 }
 
-.day-container{
-  margin-bottom: 3px;;
+.day-container {
+  margin-bottom: 3px;
 }
 .month-year-container {
   display: grid;
@@ -146,48 +147,47 @@ button{
   gap: 1%;
 }
 
-.add-edit-todo-container > input{
+.add-edit-todo-container > input {
   width: -webkit-fill-available;
 }
 
-.checkbox-container{
+.checkbox-container {
   display: flex;
   align-items: center;
 }
 
-.todo-options-container{
+.todo-options-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 10%;
 }
 
-.icon{
+.icon {
   display: flex;
   align-items: center;
   color: var(--blue-2);
 }
 
-.icon:hover{
+.icon:hover {
   cursor: pointer;
-  transform: scale(.9);
+  transform: scale(0.9);
 }
 
-.completed-icon{
+.completed-icon {
   color: var(--green);
 }
 
-
-.selected-day{
+.selected-day {
   color: var(--blue-2);
   transform: scale(2);
   border-radius: 5px;
 }
 
-.todo-text-icon-container{
+.todo-text-icon-container {
   display: grid;
   grid-template-columns: 3% auto;
-  grid-gap: .5%;
+  grid-gap: 0.5%;
 }
 
 .btn-bg-none {
