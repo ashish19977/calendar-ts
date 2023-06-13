@@ -4,7 +4,7 @@ import { AddEditTodo } from './AddEditTodo';
 import { Todo } from './Todo';
 
 export const TodoList = ({ todos, day }: { todos: TTodo[]; day: Tday }) => {
-  const [selectedTodo, setSelectedTodo] = React.useState<TTodo|null>(null);
+  const [selectedTodo, setSelectedTodo] = React.useState<TTodo | null>(null);
 
   return (
     <React.Fragment>
@@ -16,9 +16,7 @@ export const TodoList = ({ todos, day }: { todos: TTodo[]; day: Tday }) => {
       </div>
       <div className="todos-list-container">
         {todos.length ? (
-          todos.map((todo, ind) => (
-            <Todo selectTodo={setSelectedTodo} todo={todo} key={ind} />
-          ))
+          todos.map((todo, ind) => <Todo selectTodo={setSelectedTodo} todo={todo} key={ind} />)
         ) : (
           <p>No todos added.</p>
         )}

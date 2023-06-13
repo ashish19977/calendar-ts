@@ -2,19 +2,11 @@ import { Tday, TTodo } from './types';
 
 const currentDate = new Date();
 
-export const dayNames = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-];
+export const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export enum themes {
   light = 'light',
-  dark  = 'dark'
+  dark = 'dark',
 }
 
 export const currentDay: Tday = {
@@ -25,9 +17,7 @@ export const currentDay: Tday = {
   dateStr: new Date().toLocaleDateString(),
 };
 
-export const getYearsForSelect = (
-  year = currentDate.getFullYear()
-): number[] => {
+export const getYearsForSelect = (year = currentDate.getFullYear()): number[] => {
   const years = [year];
   let yearsToShow = 50;
 
@@ -114,8 +104,8 @@ export const getExtraDaysAtStartAndEnd = (days: Tday[]): Tday[] => {
 };
 
 export const addTodo = (date: string, todo: Pick<TTodo, 'title'>) => {
-  let todos: any = localStorage.getItem(date) || '[]';
-  todos = JSON.parse(todos);
+  const todosStrs = localStorage.getItem(date) || '[]';
+  const todos = JSON.parse(todosStrs);
   todos.unshift({ ...todo, id: Date.now(), isCompleted: false });
   localStorage.setItem(date, JSON.stringify(todos));
 };
@@ -124,7 +114,7 @@ export const getTodos = (date: string): TTodo[] => {
   const todos = localStorage.getItem(date) || '[]';
   const arrangedTodos = [
     ...JSON.parse(todos).filter((todo: TTodo) => !todo.isCompleted),
-    ...JSON.parse(todos).filter((todo: TTodo) => todo.isCompleted)
+    ...JSON.parse(todos).filter((todo: TTodo) => todo.isCompleted),
   ];
   return arrangedTodos;
 };
