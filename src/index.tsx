@@ -8,9 +8,9 @@ const rootElement = document.getElementById('root') as Element;
 const root = createRoot(rootElement);
 
 root.render(
-  <StrictMode>
-    <AppContextProvider>
-      <App />
-    </AppContextProvider>
-  </StrictMode>
+	<StrictMode>
+		<AppContextProvider>
+			<App />
+		</AppContextProvider>
+	</StrictMode>
 );

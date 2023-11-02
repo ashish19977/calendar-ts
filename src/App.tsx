@@ -5,12 +5,12 @@ import { CalendarContainer } from './CalendarContainer';
 import { TodosContainer } from './TodosContainer';
 
 export default function App() {
-  const { theme } = useContext(AppContext);
+	const { theme } = useContext(AppContext);
 
-  return (
-    <div className={`main-container ${theme}`}>
-      <CalendarContainer />
-      <TodosContainer />
-    </div>
-  );
+	return (
+		<div className={`main-container ${theme}`}>
+			<CalendarContainer />
+			<TodosContainer />
+		</div>
+	);
 }
