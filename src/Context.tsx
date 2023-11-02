@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { TAppContext, Tday, TTodo } from './types';
+import { TAppContext, TDay, TTodo } from './types';
 import {
   currentDay,
   getExtraDaysAtStartAndEnd,
@@ -21,15 +21,15 @@ export const AppContext = createContext<TAppContext>({} as TAppContext);
 
 export const AppContextProvider = (props: { children: React.ReactElement }) => {
   const [years, setYears] = useState<number[]>([]);
-  const [days, setDays] = useState<Tday[]>([]);
+  const [days, setDays] = useState<TDay[]>([]);
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(currentMonth);
   const [todos, setTodos] = useState(getTodos(new Date().toString()));
-  const [selectedDay, setSelectedDay] = useState<Tday>(currentDay);
+  const [selectedDay, setSelectedDay] = useState<TDay>(currentDay);
   const [selectedTodo, setSelectedTodo] = useState<TTodo>();
   const [theme, setTheme] = useState<string>(getTheme());
 
-  const onDayClick = (day: Tday) => {
+  const onDayClick = (day: TDay) => {
     setSelectedDay(day);
   };
 

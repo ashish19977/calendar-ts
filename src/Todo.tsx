@@ -1,30 +1,24 @@
-import * as React from 'react';
 import { AppContext } from './Context';
-import { TTodo } from './types';
+import { TTodoProps } from './types';
 import { Icon } from './Icon';
+import { FC, useContext } from 'react';
 
-export type TTodoProps = {
-  todo: TTodo;
-  selectTodo: React.Dispatch<React.SetStateAction<TTodo | null>>;
-};
-
-export const Todo = (props: TTodoProps) => {
+export const Todo: FC<TTodoProps> = (props) => {
   const { todo, selectTodo } = props;
-
-  const { updateTodo, deleteTodo } = React.useContext(AppContext);
+  const { updateTodo, deleteTodo } = useContext(AppContext);
+  const { isCompleted } = todo;
 
   return (
     <div className="todo-container">
       <div className="todo-text-icon-container">
-        {todo.isCompleted && <Icon name="check-bedge" className="icon completed-icon" />}
+        {isCompleted && <Icon name="check-bedge" className="icon completed-icon" />}
         <p onClick={() => selectTodo(todo)}>{todo.title}</p>
       </div>
       <div className="todo-options-container">
-        {todo.isCompleted ? (
-          <Icon name="x-mark" onClick={() => updateTodo({ ...todo, isCompleted: false })} />
-        ) : (
-          <Icon name="check" onClick={() => updateTodo({ ...todo, isCompleted: true })} />
-        )}
+        <Icon
+          name={isCompleted ? 'x-mark' : 'check'}
+          onClick={() => updateTodo({ ...todo, isCompleted: !isCompleted })}
+        />
         <Icon name="pencil" onClick={() => selectTodo(todo)} />
         <Icon name="trash" onClick={() => deleteTodo(todo.id)} />
       </div>

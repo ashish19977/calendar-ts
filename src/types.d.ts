@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-declare type Tday = {
+declare type TDay = {
   date: number;
   year: number;
   month: number;
@@ -11,14 +11,14 @@ declare type Tday = {
 declare type TAppContext = {
   years: number[];
   year: number;
-  days: Tday[];
+  days: TDay[];
   month: number;
   selectedTodo: TTodo | undefined;
   todos: TTodo[];
-  selectedDay: Tday;
+  selectedDay: TDay;
   theme: string;
-  onDayClick: (day: Tday) => void;
-  setDays: Dispatch<SetStateAction<Tday[]>>;
+  onDayClick: (day: TDay) => void;
+  setDays: Dispatch<SetStateAction<TDay[]>>;
   setYear: Dispatch<SetStateAction<number>>;
   setYears: Dispatch<SetStateAction<number[]>>;
   setTodos: Dispatch<SetStateAction<TTodo[]>>;
@@ -34,4 +34,33 @@ declare type TTodo = {
   id: number;
   isCompleted: boolean;
   title: string;
+};
+
+declare type TAddEditTodoProps = {
+  todo: TTodo | null;
+  setSelectedTodo: Dispatch<SetStateAction<TTodo | null>>;
+};
+
+declare type TIconProps = {
+  name: 'check' | 'pencil' | 'trash' | 'moon' | 'sun' | 'check-bedge' | 'plus' | 'x-mark';
+  onClick?: () => unknown;
+  height?: number;
+  width?: number;
+  className?: string;
+  isButton?: boolean;
+  extra?: object;
+};
+
+declare type TTodoProps = {
+  todo: TTodo;
+  selectTodo: React.Dispatch<React.SetStateAction<TTodo | null>>;
+};
+
+declare type TTodoListProps = {
+  todos: TTodo[];
+  day: TDay;
+};
+
+declare type TDayProps = {
+  day: TDay;
 };

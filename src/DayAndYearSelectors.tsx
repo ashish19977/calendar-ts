@@ -1,9 +1,9 @@
 import { AppContext } from './Context';
 import { monthNames } from './utils';
 import { Icon } from './Icon';
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 
-export const DayAndYearSelector = () => {
+export const DayAndYearSelector: FC = () => {
   const { year, month, setMonth, setYear, years, theme, changeTheme } = useContext(AppContext);
 
   return (

@@ -1,14 +1,9 @@
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useContext, useEffect, useState } from 'react';
 import { AppContext } from './Context';
-import { TTodo } from './types';
+import { TAddEditTodoProps, TTodo } from './types';
 import { Icon } from './Icon';
 
-export type TAddEditTodoProps = {
-  todo: TTodo | null;
-  setSelectedTodo: Dispatch<SetStateAction<TTodo | null>>;
-};
-
-export const AddEditTodo = (props: TAddEditTodoProps) => {
+export const AddEditTodo: FC<TAddEditTodoProps> = (props) => {
   const { todo, setSelectedTodo } = props;
 
   useEffect(() => {
@@ -39,11 +34,11 @@ export const AddEditTodo = (props: TAddEditTodoProps) => {
   return (
     <form onSubmit={handleSubmit} className="add-edit-todo-container">
       <input value={newTodo?.title || ''} name="title" onChange={handleAddEditTodo} placeholder="Add todo" />
-      {todo && (
-        <Icon isButton={true} onClick={() => setSelectedTodo(null)} name="x-mark" className="icon btn-bg-none" />
-      )}
       {todo ? (
-        <Icon isButton={true} className="icon btn-bg-none" extra={{ type: 'submit' }} name="check" />
+        <>
+          <Icon isButton={true} onClick={() => setSelectedTodo(null)} name="x-mark" className="icon btn-bg-none" />
+          <Icon isButton={true} className="icon btn-bg-none" extra={{ type: 'submit' }} name="check" />
+        </>
       ) : (
         <Icon isButton={true} className="icon btn-bg-none" extra={{ type: 'submit' }} name="plus" />
       )}

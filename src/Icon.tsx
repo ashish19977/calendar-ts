@@ -8,18 +8,10 @@ import {
   PencilSquareIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid';
+import { TIconProps } from './types';
+import { FC } from 'react';
 
-export type TIconProps = {
-  name: 'check' | 'pencil' | 'trash' | 'moon' | 'sun' | 'check-bedge' | 'plus' | 'x-mark';
-  onClick?: () => unknown;
-  height?: number;
-  width?: number;
-  className?: string;
-  isButton?: boolean;
-  extra?: object;
-};
-
-export const Icon: React.FC<TIconProps> = (props: TIconProps) => {
+export const Icon: FC<TIconProps> = (props) => {
   const { name, onClick, height = 20, width = 20, className = 'icon', isButton, extra = {} } = props;
 
   const getIcon = (name: string) => {

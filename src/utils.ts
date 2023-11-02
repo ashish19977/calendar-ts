@@ -1,4 +1,4 @@
-import { Tday, TTodo } from './types';
+import { TDay, TTodo } from './types';
 
 const currentDate = new Date();
 
@@ -9,7 +9,7 @@ export enum themes {
   dark = 'dark',
 }
 
-export const currentDay: Tday = {
+export const currentDay: TDay = {
   date: currentDate.getDate(),
   year: currentDate.getFullYear(),
   month: currentDate.getMonth(),
@@ -44,9 +44,9 @@ export const monthNames = [
   'December',
 ];
 
-export const getMonthDays = (year: number, month: number): Tday[] => {
+export const getMonthDays = (year: number, month: number): TDay[] => {
   let numberOfDaysInMonth = new Date(year, month + 1, 0).getDate();
-  const days: Tday[] = [];
+  const days: TDay[] = [];
 
   while (numberOfDaysInMonth > 0) {
     const thisDay = new Date(year, month, numberOfDaysInMonth);
@@ -63,7 +63,7 @@ export const getMonthDays = (year: number, month: number): Tday[] => {
   return days;
 };
 
-export const getExtraDaysAtStartAndEnd = (days: Tday[]): Tday[] => {
+export const getExtraDaysAtStartAndEnd = (days: TDay[]): TDay[] => {
   const newDays = [...days];
   const firstDay = days[0];
   const lastDay = days[days.length - 1];
@@ -102,6 +102,8 @@ export const getExtraDaysAtStartAndEnd = (days: Tday[]): Tday[] => {
 
   return newDays;
 };
+
+export const getSelectedDayStr = (day: TDay) => `${day.date} ${monthNames[day.month].substring(0, 3)} ${day.year}`;
 
 export const addTodo = (date: string, todo: Pick<TTodo, 'title'>) => {
   const todosStrs = localStorage.getItem(date) || '[]';

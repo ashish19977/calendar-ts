@@ -1,8 +1,8 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { AppContext } from './Context';
-import { Tday } from './types';
+import { TDayProps } from './types';
 
-export const Day = ({ day }: { day: Tday }) => {
+export const Day: FC<TDayProps> = ({ day }) => {
   const { date, dateStr } = day;
 
   const { onDayClick, selectedDay } = useContext(AppContext);

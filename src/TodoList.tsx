@@ -1,17 +1,16 @@
-import * as React from 'react';
-import { Tday, TTodo } from './types';
+import { TTodo, TTodoListProps } from './types';
 import { AddEditTodo } from './AddEditTodo';
 import { Todo } from './Todo';
+import { FC, useState } from 'react';
+import { getSelectedDayStr } from './utils';
 
-export const TodoList = ({ todos, day }: { todos: TTodo[]; day: Tday }) => {
-  const [selectedTodo, setSelectedTodo] = React.useState<TTodo | null>(null);
+export const TodoList: FC<TTodoListProps> = ({ todos, day }: TTodoListProps) => {
+  const [selectedTodo, setSelectedTodo] = useState<TTodo | null>(null);
 
   return (
-    <React.Fragment>
+    <>
       <div className="todos-top-container">
-        <p>
-          Todos for - {day.date}/{day.month + 1}/{day.year}
-        </p>
+        <p>Todos for - {getSelectedDayStr(day)}</p>
         <AddEditTodo setSelectedTodo={setSelectedTodo} todo={selectedTodo} />
       </div>
       <div className="todos-list-container">
@@ -21,6 +20,6 @@ export const TodoList = ({ todos, day }: { todos: TTodo[]; day: Tday }) => {
           <p>No todos added.</p>
         )}
       </div>
-    </React.Fragment>
+    </>
   );
 };
