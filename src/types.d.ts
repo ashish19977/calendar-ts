@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { themes } from './utils';
 
 declare type TDay = {
   date: number;
@@ -6,28 +7,6 @@ declare type TDay = {
   month: number;
   day: string;
   dateStr: string;
-};
-
-declare type TAppContext = {
-  years: number[];
-  year: number;
-  days: TDay[];
-  month: number;
-  selectedTodo: TTodo | undefined;
-  todos: TTodo[];
-  selectedDay: TDay;
-  theme: string;
-  onDayClick: (day: TDay) => void;
-  setDays: Dispatch<SetStateAction<TDay[]>>;
-  setYear: Dispatch<SetStateAction<number>>;
-  setYears: Dispatch<SetStateAction<number[]>>;
-  setTodos: Dispatch<SetStateAction<TTodo[]>>;
-  setMonth: Dispatch<SetStateAction<number>>;
-  setSelectedTodo: Dispatch<SetStateAction<TTodo | undefined>>;
-  updateTodo: (todo: Partial<TTodo>) => void;
-  deleteTodo: (id: number) => void;
-  addTodo: (todo: TTodo) => void;
-  changeTheme: () => void;
 };
 
 declare type TTodo = {
@@ -43,7 +22,7 @@ declare type TAddEditTodoProps = {
 
 declare type TIconProps = {
   name: 'check' | 'pencil' | 'trash' | 'moon' | 'sun' | 'check-bedge' | 'plus' | 'x-mark';
-  onClick?: () => unknown;
+  onClick?: () => void;
   height?: number;
   width?: number;
   className?: string;
@@ -53,7 +32,7 @@ declare type TIconProps = {
 
 declare type TTodoProps = {
   todo: TTodo;
-  selectTodo: React.Dispatch<React.SetStateAction<TTodo | null>>;
+  setSelectedTodo: Dispatch<SetStateAction<TTodo | null>>;
 };
 
 declare type TTodoListProps = {
@@ -63,4 +42,42 @@ declare type TTodoListProps = {
 
 declare type TDayProps = {
   day: TDay;
+};
+
+declare type TAppState = {
+  years: number[];
+  year: number;
+  days: TDay[];
+  month: number;
+  selectedTodo?: TTodo | undefined;
+  todos: TTodo[];
+  selectedDay: TDay;
+  theme: string;
+};
+
+declare type TAppContext1 = TAppState & {
+  setState: Dispatch<SetStateAction<TAppState>>;
+};
+
+declare type TLocalStorage = {
+  theme?: themes;
+};
+
+declare type TQuote = {
+  id: number;
+  quote: string;
+  author: string;
+};
+
+declare type TQuoteApiRes = {
+  quotes: TQuote[];
+  total: number;
+  skip: skip;
+  limit: number;
+};
+
+declare type TQuoteState = {
+  quote: string;
+  isLoading: boolean;
+  hasError: boolean;
 };

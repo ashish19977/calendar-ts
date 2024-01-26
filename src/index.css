@@ -16,15 +16,6 @@
   --green: #48c9b0;
 }
 
-h1,
-p {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-}
-small {
-  font-size: x-small;
-}
-
 html {
   height: 100%;
   width: 100%;
@@ -37,6 +28,23 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-size: 1rem;
+}
+
+/* hide scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+h1,
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+small {
+  font-size: x-small;
 }
 
 *:focus {
@@ -69,7 +77,7 @@ button {
 
 .main-container {
   display: grid;
-  grid-template-rows: minmax(auto, 45%) auto;
+  grid-template-rows: minmax(auto, 52%) auto;
   grid-gap: 1%;
   height: 100%;
   background-color: var(--main-bg-color);
@@ -78,8 +86,9 @@ button {
 
 .todos-container {
   display: grid;
-  grid-template-rows: 18% auto;
+  grid-template-rows: minmax(auto, 19%) auto;
   margin: 0 5%;
+  padding-top: 1em;
   overflow: hidden;
   color: var(--blue-2);
 }
@@ -94,6 +103,16 @@ button {
   .main-container {
     /* width: 60%; */
     padding: 0 20%;
+  }
+}
+
+/* smaller screens */
+@media only screen and (max-width: 550px) {
+  .main-container {
+    grid-template-rows: minmax(auto, 42%) auto;
+  }
+  .todos-container {
+    grid-template-rows: minmax(auto, 17%) auto;
   }
 }
 
@@ -186,11 +205,16 @@ button {
 
 .todo-text-icon-container {
   display: grid;
-  grid-template-columns: 3% auto;
   grid-gap: 0.5%;
 }
 
 .btn-bg-none {
   background: none;
   padding: 5px;
+}
+
+.p-quote {
+  margin: 0 5% 2em 5%;
+  text-align: center;
+  color: var(--blue-1);
 }

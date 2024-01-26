@@ -1,46 +1,47 @@
-import { ChangeEvent, FC, FormEvent, useContext, useEffect, useState } from 'react';
-import { AppContext } from './Context';
-import { TAddEditTodoProps, TTodo } from './types';
+/* eslint-disable max-len */
+import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
+import { TAddEditTodoProps } from './types';
 import { Icon } from './Icon';
+import { useTodo } from './useTodo';
 
-export const AddEditTodo: FC<TAddEditTodoProps> = (props) => {
-  const { todo, setSelectedTodo } = props;
+export const AddEditTodo: FC<TAddEditTodoProps> = ({ todo, setSelectedTodo }) => {
+  const { addTodo, updateTodo } = useTodo();
+  const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
-    setNewTodo(todo);
-  }, [todo]);
+    setTitle(todo?.title || '');
+  }, [todo?.title]);
 
-  const [newTodo, setNewTodo] = useState<TTodo | null>(null);
-  const { addTodo, updateTodo } = useContext(AppContext);
-
-  const handleAddEditTodo = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
-    const changedTodo = {
-      ...newTodo,
-      [target.name]: target.value,
-    };
-    if (changedTodo.title) {
-      setNewTodo(changedTodo as TTodo);
-    }
+    setTitle(target.value);
   };
 
   const handleSubmit = (e: FormEvent) => {
+    console.log('called1');
     e.preventDefault();
-    if (newTodo) todo ? updateTodo(newTodo) : addTodo(newTodo);
+    if (title.length === 0) return;
+    todo ? updateTodo({ ...todo, title }) : addTodo(title);
     setSelectedTodo(null);
-    setNewTodo(null);
+    setTitle('');
   };
 
   return (
     <form onSubmit={handleSubmit} className="add-edit-todo-container">
-      <input value={newTodo?.title || ''} name="title" onChange={handleAddEditTodo} placeholder="Add todo" />
+      <input value={title} name="title" onChange={handleChange} placeholder="Add todo" />
       {todo ? (
         <>
-          <Icon isButton={true} onClick={() => setSelectedTodo(null)} name="x-mark" className="icon btn-bg-none" />
-          <Icon isButton={true} className="icon btn-bg-none" extra={{ type: 'submit' }} name="check" />
+          <Icon
+            name="x-mark"
+            className="icon btn-bg-none"
+            isButton={true}
+            onClick={() => setSelectedTodo(null)}
+            extra={{ type: 'button' }}
+          />
+          <Icon name="check" className="icon btn-bg-none" isButton={true} extra={{ type: 'submit' }} />
         </>
       ) : (
-        <Icon isButton={true} className="icon btn-bg-none" extra={{ type: 'submit' }} name="plus" />
+        <Icon name="plus" className="icon btn-bg-none" isButton={true} extra={{ type: 'submit' }} />
       )}
     </form>
   );

@@ -39,13 +39,15 @@ export const Icon: FC<TIconProps> = (props) => {
     onClick && onClick();
   };
 
+  const iconName = getIcon(name);
+
   return isButton ? (
-    <button {...extra} className={className}>
-      {getIcon(name)}
+    <button {...extra} onClick={handleClick} className={className}>
+      {iconName}
     </button>
   ) : (
     <div {...extra} onClick={handleClick} className={className}>
-      {getIcon(name)}
+      {iconName}
     </div>
   );
 };
