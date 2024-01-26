@@ -1,9 +1,9 @@
-import { TTodoProps } from './types';
-import { Icon } from './Icon';
+import { TTodoProps } from '../types';
+import { Icon } from './';
 import { FC } from 'react';
-import { useTodo } from './useTodo';
+import { useTodo } from '../hooks';
 
-export const Todo: FC<TTodoProps> = (props) => {
+const Todo: FC<TTodoProps> = (props) => {
 	const { updateTodo, deleteTodo } = useTodo();
 	const {
 		todo: { isCompleted },
@@ -28,3 +28,5 @@ export const Todo: FC<TTodoProps> = (props) => {
 		</div>
 	);
 };
+
+export default Todo;

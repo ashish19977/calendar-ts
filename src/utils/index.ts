@@ -1,13 +1,5 @@
-import { currentDate, dayNames, defaultQuotes, monthNames } from './constants';
-import { TDay, TLocalStorage, TTodo } from './types';
-
-export const currentDay: TDay = {
-	date: currentDate.getDate(),
-	year: currentDate.getFullYear(),
-	month: currentDate.getMonth(),
-	day: dayNames[currentDate.getDay()],
-	dateStr: new Date().toLocaleDateString(),
-};
+import { currentDate, dayNames, monthNames } from '../constants';
+import { TDay, TLocalStorage, TTodo } from '../types';
 
 export const getYearsForSelect = (year = currentDate.getFullYear()): number[] => {
 	const years = [year];
@@ -114,8 +106,6 @@ export const deleteTodo = (date: string, id: number) => {
 	todos = todos.filter((todo) => todo.id !== id);
 	localStorage.setItem(date, JSON.stringify(todos));
 };
-
-export const randomDefaultQuote = defaultQuotes[Math.floor(Math.random() * 4)];
 
 export const setLocalStorageItem = (key: keyof TLocalStorage, value: TLocalStorage) => {
 	localStorage.setItem(key, value[key] as string);

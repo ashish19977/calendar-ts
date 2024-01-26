@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { TQuoteApiRes, TQuoteState } from './types';
-import { randomDefaultQuote } from './utils';
+import { TQuoteApiRes, TQuoteState } from '../types';
+import { randomDefaultQuote } from '../constants';
 
-export const useQuote = (): TQuoteState => {
+const useQuote = (): TQuoteState => {
 	const defaultQuote = randomDefaultQuote;
 	const [quoteState, setQuoteStates] = useState<TQuoteState>({
 		quote: defaultQuote,
@@ -40,3 +40,5 @@ export const useQuote = (): TQuoteState => {
 
 	return quoteState;
 };
+
+export default useQuote;

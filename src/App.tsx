@@ -1,7 +1,6 @@
-import { useStore } from './store';
+import { useStore } from './state';
 import './index.css';
-import { CalendarContainer } from './CalendarContainer';
-import { TodosContainer } from './TodosContainer';
+import { CalendarContainer, TodosContainer } from './containers';
 
 export default function App() {
 	const { theme } = useStore();

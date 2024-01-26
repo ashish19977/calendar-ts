@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
 import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
-import { TAddEditTodoProps } from './types';
-import { Icon } from './Icon';
-import { useTodo } from './useTodo';
+import { TAddEditTodoProps } from '../types';
+import { Icon } from './';
+import { useTodo } from '../hooks';
 
-export const AddEditTodo: FC<TAddEditTodoProps> = ({ todo, setSelectedTodo }) => {
+const AddEditTodo: FC<TAddEditTodoProps> = ({ todo, setSelectedTodo }) => {
 	const { addTodo, updateTodo } = useTodo();
 	const [title, setTitle] = useState<string>('');
 
@@ -46,3 +46,5 @@ export const AddEditTodo: FC<TAddEditTodoProps> = ({ todo, setSelectedTodo }) =>
 		</form>
 	);
 };
+
+export default AddEditTodo;

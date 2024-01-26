@@ -1,12 +1,11 @@
 import { FC } from 'react';
-import { useStore } from './store';
-import { Day } from './Day';
-import './index.css';
-import { DayAndYearSelector } from './DayAndYearSelectors';
-import { dayNames } from './constants';
-import { useQuote } from './useQuote';
+import { useStore } from '../state';
+import { Day } from '../components';
+import { DayAndYearSelector } from '../components';
+import { dayNames } from '../constants';
+import { useQuote } from '../hooks';
 
-export const CalendarContainer: FC = () => {
+const CalendarContainer: FC = () => {
 	const { days } = useStore();
 	const { quote } = useQuote();
 
@@ -30,3 +29,5 @@ export const CalendarContainer: FC = () => {
 		</div>
 	);
 };
+
+export default CalendarContainer;

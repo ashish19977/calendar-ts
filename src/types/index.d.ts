@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { themes } from './utils';
+import { themes } from '../utils';
 
 declare type TDay = {
 	date: number;
@@ -61,7 +61,7 @@ declare type TAppState = {
 	theme: string;
 };
 
-declare type TAppContext1 = TAppState & {
+declare type TAppContext = TAppState & {
 	setState: Dispatch<SetStateAction<TAppState>>;
 };
 
@@ -99,7 +99,7 @@ declare type TAppState = {
 	theme: string;
 };
 
-declare type TAppContext1 = TAppState & {
+declare type TAppContext = TAppState & {
 	setState: Dispatch<SetStateAction<TAppState>>;
 };
 

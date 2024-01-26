@@ -1,10 +1,9 @@
-import { AddEditTodo } from './AddEditTodo';
-import { Todo } from './Todo';
-import { getSelectedDayStr } from './utils';
-import { useTodo } from './useTodo';
-import { useCalender } from './useCalender';
+import { AddEditTodo } from './';
+import { Todo } from './';
+import { getSelectedDayStr } from '../utils';
+import { useTodo, useCalender } from '../hooks';
 
-export const TodoList = () => {
+const TodoList = () => {
 	const { todos, selectedTodo, setSelectedTodo } = useTodo();
 	const { selectedDay: day } = useCalender();
 
@@ -24,3 +23,5 @@ export const TodoList = () => {
 		</>
 	);
 };
+
+export default TodoList;

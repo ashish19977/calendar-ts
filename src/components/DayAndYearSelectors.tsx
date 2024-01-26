@@ -1,10 +1,9 @@
-import { Icon } from './Icon';
+import { Icon } from './';
 import { FC } from 'react';
-import { useCalender } from './useCalender';
-import { useTheme } from './useTheme';
-import { monthNames } from './constants';
+import { useCalender, useTheme } from '../hooks';
+import { monthNames } from '../constants';
 
-export const DayAndYearSelector: FC = () => {
+const DayAndYearSelector: FC = () => {
 	const { year, month, setMonth, setYear, years } = useCalender();
 	const { theme, changeTheme } = useTheme();
 
@@ -26,3 +25,5 @@ export const DayAndYearSelector: FC = () => {
 		</div>
 	);
 };
+
+export default DayAndYearSelector;

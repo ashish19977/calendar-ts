@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import { TDayProps } from './types';
-import { useCalender } from './useCalender';
+import { TDayProps } from '../types';
+import { useCalender } from '../hooks';
 
-export const Day: FC<TDayProps> = ({ day }) => {
+const Day: FC<TDayProps> = ({ day }) => {
 	const { date, dateStr } = day;
-
 	const { setSelectedDay, selectedDay } = useCalender();
 
 	return (
@@ -16,3 +15,5 @@ export const Day: FC<TDayProps> = ({ day }) => {
 		</div>
 	);
 };
+
+export default Day;

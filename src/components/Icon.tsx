@@ -8,10 +8,10 @@ import {
 	PencilSquareIcon,
 	XMarkIcon,
 } from '@heroicons/react/24/solid';
-import { TIconProps } from './types';
+import { TIconProps } from '../types';
 import { FC } from 'react';
 
-export const Icon: FC<TIconProps> = (props) => {
+const Icon: FC<TIconProps> = (props) => {
 	const { name, onClick, height = 20, width = 20, className = 'icon', isButton, extra = {} } = props;
 
 	const getIcon = (name: string) => {
@@ -51,3 +51,5 @@ export const Icon: FC<TIconProps> = (props) => {
 		</div>
 	);
 };
+
+export default Icon;
