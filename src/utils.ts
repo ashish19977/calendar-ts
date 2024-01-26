@@ -1,13 +1,5 @@
-import { TDay, TTodo } from './types';
-
-const currentDate = new Date();
-
-export const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-export enum themes {
-	light = 'light',
-	dark = 'dark',
-}
+import { currentDate, dayNames, defaultQuotes, monthNames } from './constants';
+import { TDay, TLocalStorage, TTodo } from './types';
 
 export const currentDay: TDay = {
 	date: currentDate.getDate(),
@@ -28,21 +20,6 @@ export const getYearsForSelect = (year = currentDate.getFullYear()): number[] =>
 	}
 	return years;
 };
-
-export const monthNames = [
-	'January',
-	'February',
-	'March',
-	'April',
-	'May',
-	'June',
-	'July',
-	'August',
-	'September',
-	'October',
-	'November',
-	'December',
-];
 
 export const getMonthDays = (year: number, month: number): TDay[] => {
 	let numberOfDaysInMonth = new Date(year, month + 1, 0).getDate();
@@ -105,10 +82,10 @@ export const getExtraDaysAtStartAndEnd = (days: TDay[]): TDay[] => {
 
 export const getSelectedDayStr = (day: TDay) => `${day.date} ${monthNames[day.month].substring(0, 3)} ${day.year}`;
 
-export const addTodo = (date: string, todo: Pick<TTodo, 'title'>) => {
+export const addTodo = (date: string, title: string) => {
 	const todosStrs = localStorage.getItem(date) || '[]';
 	const todos = JSON.parse(todosStrs);
-	todos.unshift({ ...todo, id: Date.now(), isCompleted: false });
+	todos.unshift({ title, id: Date.now(), isCompleted: false });
 	localStorage.setItem(date, JSON.stringify(todos));
 };
 
@@ -138,10 +115,12 @@ export const deleteTodo = (date: string, id: number) => {
 	localStorage.setItem(date, JSON.stringify(todos));
 };
 
-export const setTheme = (theme: themes) => {
-	localStorage.setItem('theme', theme);
+export const randomDefaultQuote = defaultQuotes[Math.floor(Math.random() * 4)];
+
+export const setLocalStorageItem = (key: keyof TLocalStorage, value: TLocalStorage) => {
+	localStorage.setItem(key, value[key] as string);
 };
 
-export const getTheme = (): string => {
-	return localStorage.getItem('theme') || themes.light;
+export const getLocalStorageItem = (key: string): string => {
+	return localStorage.getItem(key) || '';
 };

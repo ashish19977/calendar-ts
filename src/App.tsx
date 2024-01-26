@@ -1,11 +1,10 @@
-import { useContext } from 'react';
-import { AppContext } from './Context';
+import { useStore } from './store';
 import './index.css';
 import { CalendarContainer } from './CalendarContainer';
 import { TodosContainer } from './TodosContainer';
 
 export default function App() {
-	const { theme } = useContext(AppContext);
+	const { theme } = useStore();
 
 	return (
 		<div className={`main-container ${theme}`}>

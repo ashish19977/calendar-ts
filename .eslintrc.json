@@ -17,9 +17,10 @@
 	"plugins": ["@typescript-eslint", "react"],
 	"rules": {
 		"linebreak-style": [1, "unix"],
-		"quotes": [1, "single"],
+		"quotes": [1, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
 		"semi": [1, "always"],
 		"react/react-in-jsx-scope": [0],
-		"max-len": [1, { "code": 120 }]
+		"max-len": [1, { "code": 120 }],
+		"@typescript-eslint/no-empty-function": 1
 	}
 }

@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
-import { TQuoteState } from './types';
+import { TQuoteApiRes, TQuoteState } from './types';
+import { randomDefaultQuote } from './utils';
 
 export const useQuote = (): TQuoteState => {
-	const [quoteState, setQuoteStates] = useState<TQuoteState>({} as TQuoteState);
+	const defaultQuote = randomDefaultQuote;
+	const [quoteState, setQuoteStates] = useState<TQuoteState>({
+		quote: defaultQuote,
+		isLoading: false,
+		hasError: false,
+	});
 
 	const fetchQuote = async () => {
 		try {
@@ -11,12 +17,13 @@ export const useQuote = (): TQuoteState => {
 				isLoading: true,
 				hasError: false,
 			});
-			const quoteRes = await fetch('https://dummyjson.com/quotes/random');
-			const { quote } = await quoteRes.json();
+			const quoteRes = await fetch('https://dummyjson.com/quotes?limit=20');
+			const res: TQuoteApiRes = await quoteRes.json();
+			const validQuote = res.quotes.find(({ quote }) => quote.length < 80);
 			setQuoteStates({
 				isLoading: false,
 				hasError: false,
-				quote,
+				quote: validQuote?.quote || defaultQuote,
 			});
 		} catch (error) {
 			setQuoteStates({

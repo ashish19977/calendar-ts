@@ -1,13 +1,13 @@
-import { FC, useContext } from 'react';
-import { AppContext } from './Context';
+import { FC } from 'react';
+import { useStore } from './store';
 import { Day } from './Day';
 import './index.css';
-import { dayNames } from './utils';
 import { DayAndYearSelector } from './DayAndYearSelectors';
+import { dayNames } from './constants';
 import { useQuote } from './useQuote';
 
 export const CalendarContainer: FC = () => {
-	const { days } = useContext(AppContext);
+	const { days } = useStore();
 	const { quote } = useQuote();
 
 	return (
