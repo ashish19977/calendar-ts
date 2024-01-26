@@ -206,6 +206,8 @@ button {
 .completed-icon {
 	color: var(--green);
 	margin-right: 0.1em;
+	display: flex;
+	align-items: start;
 }
 
 .selected-day {
