@@ -18,7 +18,6 @@ const AddEditTodo: FC<TAddEditTodoProps> = ({ todo, setSelectedTodo }) => {
 	};
 
 	const handleSubmit = (e: FormEvent) => {
-		console.log('called1');
 		e.preventDefault();
 		if (title.length === 0) return;
 		todo ? updateTodo({ ...todo, title }) : addTodo(title);
